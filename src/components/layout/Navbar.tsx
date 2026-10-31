@@ -105,8 +105,8 @@ export function Navbar({ signedIn, authEnabled }: { signedIn: boolean; authEnabl
       </div>
 
       {open && (
-        <div id="mobile-menu" className="animate-in fixed inset-x-0 top-16 bottom-0 z-30 overflow-y-auto border-t border-border bg-bg lg:hidden">
-          <div className="mx-auto flex max-w-lg flex-col gap-6 px-4 py-6">
+        <div id="mobile-menu" className="animate-in absolute inset-x-0 top-full z-50 max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-t border-border bg-bg shadow-pop lg:hidden">
+          <div className="mx-auto flex max-w-lg flex-col gap-6 px-4 py-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
             <nav aria-label={t.nav.main} className="flex flex-col gap-1">
               {links.map((l, i) => (
                 <Link
