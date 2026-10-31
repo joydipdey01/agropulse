@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens ─────────────────────────────────────────────
+   Muted forest green + warm neutral + earth-ochre accent.
+   No neon, no purple/blue gradients. Both themes meet WCAG AA text contrast. */
+:root {
+  --bg: #f5f6f2;
+  --surface: #ffffff;
+  --surface-2: #eceeea;
+  --border: #d9ded5;
+  --fg: #18221c;
+  --fg-muted: #4a584f;
+  --fg-subtle: #6b786f;
+  --primary: #2c5a40;
+  --primary-hover: #234a33;
+  --primary-fg: #ffffff;
+  --primary-soft: #e2ece5;
+  --link: #2c5a40;
+  --accent: #9a6a2c;
+  --accent-soft: #f1e8d8;
+  --info: #2f5f7a;
+  --info-soft: #e1ebf0;
+  --success: #2c6e48;
+  --success-soft: #e0eee5;
+  --warn: #8f6416;
+  --warn-soft: #f5ead2;
+  --danger: #a23b3b;
+  --danger-soft: #f6e1e1;
+  --shadow: 0 1px 2px rgb(24 34 28 / 0.06), 0 4px 16px rgb(24 34 28 / 0.05);
+  --shadow-lg: 0 2px 6px rgb(24 34 28 / 0.08), 0 14px 36px rgb(24 34 28 / 0.1);
+  --font-latin: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-bengali: "Noto Sans Bengali", "Nirmala UI", sans-serif;
+  --font-devanagari: "Noto Sans Devanagari", "Nirmala UI", sans-serif;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0f1713;
+  --surface: #16211b;
+  --surface-2: #1c2a23;
+  --border: #2a3b32;
+  --fg: #e6ede8;
+  --fg-muted: #aab9b0;
+  --fg-subtle: #8a9b91;
+  --primary: #3f7a58;
+  --primary-hover: #4a8a65;
+  --primary-fg: #ffffff;
+  --primary-soft: #1b2e24;
+  --link: #86bf9d;
+  --accent: #d1a25c;
+  --accent-soft: #2b2417;
+  --info: #7fb0cb;
+  --info-soft: #172631;
+  --success: #6fbf8e;
+  --success-soft: #16291f;
+  --warn: #dcb061;
+  --warn-soft: #2c2415;
+  --danger: #e08a8a;
+  --danger-soft: #301a1a;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 16px rgb(0 0 0 / 0.25);
+  --shadow-lg: 0 2px 6px rgb(0 0 0 / 0.35), 0 14px 36px rgb(0 0 0 / 0.35);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-fg: var(--fg);
+  --color-muted: var(--fg-muted);
+  --color-subtle: var(--fg-subtle);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-soft: var(--primary-soft);
+  --color-link: var(--link);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --shadow-card: var(--shadow);
+  --shadow-pop: var(--shadow-lg);
+  --font-sans: var(--font-latin), var(--font-bengali), var(--font-devanagari), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Nirmala UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Taller line-height for Indic scripts */
+html[lang="bn"] body,
+html[lang="hi"] body {
+  line-height: 1.75;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.dark :focus-visible {
+  outline-color: var(--link);
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--fg);
+}
+
+/* ── Motion (no cursor effects; all respects reduced-motion) ───── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes grow-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-48px, 0, 0); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.animate-page { animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-in { animation: fade-in 0.35s ease both; }
+.animate-slide { animation: slide-in 0.35s ease both; }
+.animate-bar { transform-origin: left; animation: grow-x 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-drift { animation: drift 22s linear infinite alternate; }
+.animate-pulse-soft { animation: pulse-soft 1.4s ease-in-out infinite; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--d, 0ms);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+.lift { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+.lift:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* Number inputs: hide spinners for cleaner alignment */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+
+/* Subtle topographic field-row pattern used on hero and auth panel */
+.field-pattern {
+  background-image:
+    repeating-linear-gradient(0deg, color-mix(in srgb, var(--primary) 9%, transparent) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--primary) 6%, transparent) 0 1px, transparent 1px 56px);
+}
+
+/* Print: keep results readable */
+@media print {
+  header, footer, nav, .no-print { display: none !important; }
+  body { background: #fff; color: #000; }
+}
